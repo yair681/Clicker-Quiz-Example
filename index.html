@@ -1,511 +1,2062 @@
 <!DOCTYPE html>
+
 <html lang="he" dir="rtl">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>קליקרים | חידונים אינטראקטיביים לעסקים - אתר נגיש</title>
+
+    <title>קליקרים | חידונים אינטראקטיביים לעסקים</title>
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
     <style>
-        /* CSS קריטי עבור נגישות: ניגודיות ותמיכה במקלדת */
+
         * {
+
             margin: 0;
+
             padding: 0;
+
             box-sizing: border-box;
+
         }
+
+
 
         :root {
-            /* וידוא ניגודיות תקינה עבור טקסט כהה על רקע בהיר וטקסט בהיר על רקע כהה */
+
             --primary: #4361ee;
+
             --secondary: #3a0ca3;
-            --accent: #f72585; /* צבע זה נשאר, אבל ניגודיות הטקסט עליו תצטרך להיות לבנה */
+
+            --accent: #f72585;
+
             --success: #4cc9f0;
+
             --light: #f8f9fa;
+
             --dark: #212529;
-            --text: #333; /* ניגודיות טובה על רקע בהיר */
-            --text-on-dark: #f8f9fa; /* טקסט בהיר על רקע כהה */
+
+            --text: #333;
+
         }
+
+
 
         body {
+
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
             line-height: 1.6;
+
             color: var(--text);
+
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
             min-height: 100vh;
+
         }
+
+
 
         .container {
+
             max-width: 1200px;
+
             margin: 0 auto;
+
             padding: 0 20px;
+
         }
-        
-        /* תיקוני ניגודיות ופוקוס קריטיים לנגישות */
-        a:focus, button:focus, .quiz-option:focus, .cta-button:focus, .admin-btn:focus {
-            outline: 3px solid #ffcc00; /* הדגשת פוקוס ברורה */
-            outline-offset: 3px;
+
+
+
+        /* Header */
+
+        header {
+
+            background: rgba(255, 255, 255, 0.95);
+
+            backdrop-filter: blur(10px);
+
+            padding: 1rem 0;
+
+            position: fixed;
+
+            width: 100%;
+
+            top: 0;
+
+            z-index: 1000;
+
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+
+            transition: all 0.3s ease;
+
         }
-        
-        /* דוגמה לניגודיות טקסט על CTA עם צבע ה-Accent */
-        .cta-button {
+
+
+
+        nav {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+        }
+
+
+
+        .logo {
+
+            font-size: 1.8rem;
+
+            font-weight: bold;
+
+            color: var(--primary);
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 0.5rem;
+
+        }
+
+
+
+        .logo i {
+
+            color: var(--accent);
+
+        }
+
+
+
+        .nav-links {
+
+            display: flex;
+
+            list-style: none;
+
+            gap: 2rem;
+
+        }
+
+
+
+        .nav-links a {
+
+            color: var(--dark);
+
+            text-decoration: none;
+
+            font-weight: 500;
+
+            transition: all 0.3s ease;
+
+            position: relative;
+
+        }
+
+
+
+        .nav-links a::after {
+
+            content: '';
+
+            position: absolute;
+
+            bottom: -5px;
+
+            right: 0;
+
+            width: 0;
+
+            height: 2px;
+
             background: var(--accent);
-            color: var(--light); /* ודא ניגודיות טובה על accent */
+
+            transition: width 0.3s ease;
+
         }
+
+
+
+        .nav-links a:hover {
+
+            color: var(--primary);
+
+        }
+
+
+
+        .nav-links a:hover::after {
+
+            width: 100%;
+
+        }
+
+
+
+        .header-actions {
+
+            display: flex;
+
+            gap: 1rem;
+
+            align-items: center;
+
+        }
+
+
+
+        .admin-btn {
+
+            background: var(--primary);
+
+            color: white;
+
+            border: none;
+
+            padding: 8px 15px;
+
+            border-radius: 25px;
+
+            cursor: pointer;
+
+            font-size: 0.9rem;
+
+            transition: all 0.3s;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 0.5rem;
+
+        }
+
+
+
+        .admin-btn:hover {
+
+            background: var(--secondary);
+
+            transform: translateY(-2px);
+
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
+
+        }
+
+
+
+        /* Hero Section */
+
+        .hero {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            position: relative;
+
+            overflow: hidden;
+
+            margin-top: 80px;
+
+            color: white;
+
+        }
+
+
+
+        .hero-content {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 3rem;
+
+            align-items: center;
+
+        }
+
+
+
+        .hero-text h1 {
+
+            font-size: 3.5rem;
+
+            margin-bottom: 1.5rem;
+
+            line-height: 1.2;
+
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+
+        }
+
+
+
+        .hero-text h1 span {
+
+            color: var(--accent);
+
+            display: block;
+
+        }
+
+
+
+        .typewriter {
+
+            overflow: hidden;
+
+            border-right: 3px solid var(--accent);
+
+            white-space: nowrap;
+
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+
+        }
+
+
+
+        @keyframes typing {
+
+            from { width: 0 }
+
+            to { width: 100% }
+
+        }
+
+
+
+        @keyframes blink-caret {
+
+            from, to { border-color: transparent }
+
+            50% { border-color: var(--accent) }
+
+        }
+
+
+
+        .hero-text p {
+
+            font-size: 1.2rem;
+
+            margin-bottom: 2rem;
+
+            opacity: 0.9;
+
+            line-height: 1.8;
+
+        }
+
+
+
+        .hero-buttons {
+
+            display: flex;
+
+            gap: 1rem;
+
+        }
+
+
+
+        .cta-button {
+
+            display: inline-block;
+
+            background: var(--accent);
+
+            color: white;
+
+            padding: 15px 30px;
+
+            border-radius: 50px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            font-size: 1.1rem;
+
+            transition: all 0.3s ease;
+
+            box-shadow: 0 5px 15px rgba(247, 37, 133, 0.4);
+
+            border: none;
+
+            cursor: pointer;
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+
+
+        .cta-button::before {
+
+            content: '';
+
+            position: absolute;
+
+            top: 0;
+
+            left: -100%;
+
+            width: 100%;
+
+            height: 100%;
+
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+
+            transition: left 0.5s;
+
+        }
+
+
+
+        .cta-button:hover::before {
+
+            left: 100%;
+
+        }
+
+
+
+        .cta-button:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow: 0 10px 25px rgba(247, 37, 133, 0.6);
+
+        }
+
+
+
+        .cta-button.secondary {
+
+            background: transparent;
+
+            color: white;
+
+            border: 2px solid white;
+
+            box-shadow: none;
+
+        }
+
+
 
         .cta-button.secondary:hover {
+
+            background: white;
+
+            color: var(--primary);
+
+        }
+
+
+
+        .hero-demo {
+
+            background: white;
+
+            border-radius: 20px;
+
+            padding: 2rem;
+
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+
+
+        .demo-header {
+
+            text-align: center;
+
+            margin-bottom: 2rem;
+
+            color: var(--dark);
+
+        }
+
+
+
+        .demo-header h3 {
+
+            font-size: 1.5rem;
+
+            margin-bottom: 0.5rem;
+
+            color: var(--primary);
+
+        }
+
+
+
+        .quiz-container {
+
             background: var(--light);
-            color: var(--primary); /* ודא ניגודיות טובה על light */
+
+            border-radius: 15px;
+
+            padding: 1.5rem;
+
+            margin-bottom: 1.5rem;
+
         }
 
-        /* סרגל נגישות מינימלי - דורש הרחבה ל-6 אפשרויות */
-        #accessibility-toolbar {
-            position: fixed;
-            top: 50%;
-            right: 10px;
-            transform: translateY(-50%);
-            z-index: 10000;
-            background: #fff;
-            padding: 10px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            border: 1px solid #ddd;
-        }
-        
-        .ac-btn {
-            display: block;
-            margin-bottom: 8px;
-            padding: 8px;
-            border: 1px solid var(--primary);
-            background: var(--primary);
-            color: white;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background 0.2s;
-            font-size: 0.8rem;
+
+
+        .quiz-question {
+
+            font-size: 1.2rem;
+
+            margin-bottom: 1.5rem;
+
+            color: var(--dark);
+
             text-align: center;
-        }
-        
-        .ac-btn:hover {
-            background: var(--secondary);
+
         }
 
-        .ac-btn i {
-            margin-left: 5px;
-        }
-        /* סגנון לקישור דילוג - נסתר עד לקבלת פוקוס */
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            right: 0;
-            background: var(--accent);
-            color: white;
-            padding: 8px;
-            z-index: 10001;
-            text-decoration: none;
-        }
 
-        .skip-link:focus {
-            top: 0;
-        }
-        
-        /* הוספת מיקוד ברור לאפשרויות החידון (quiz-option) */
-        .quiz-option {
-            /* הופך את ה-div לכפתור לוגי נגיש */
-            cursor: pointer;
-            text-align: center;
-            font-weight: 500;
-            /* הוספת תכונות ARIA באמצעות JS או הפיכה ל-button */
-        }
-        
+
         .quiz-options {
-            display: grid;
-            gap: 1rem;
-            /* שימוש ב-fieldset ו-legend אם זה טופס אמיתי, או role="radiogroup" */
-        }
-        
-        /* סגנונות ה-Admin וה-Lock נשארים כמעט זהים (מניח שאין בהם בעיות ניגודיות קריטיות) */
-        /* ... שאר סגנונות ה-CSS המקוריים ... */
-        
-        /* תיקון קריטי: כותרות משנה ב-Hero (מניעת שימוש ב-style inline) */
-        .hero-text h2 {
-            font-size: 2rem; 
-            margin-bottom: 1rem; 
-            color: var(--accent);
-            /* הסרת ה-style inline ושילוב ב-CSS */
-        }
-        
-    </style>
-</head>
-<body>
-    <a href="#main-content" class="skip-link">דלג לתוכן ראשי</a>
 
-    <div id="accessibility-toolbar" aria-label="סרגל נגישות אתר">
-        <button class="ac-btn" onclick="toggleContrast()" aria-label="מצב ניגודיות גבוהה">
-            <i class="fas fa-adjust"></i> ניגודיות
-        </button>
-        <button class="ac-btn" onclick="increaseText()" aria-label="הגדל גודל טקסט">
-            <i class="fas fa-search-plus"></i> הגדל טקסט
-        </button>
-        </div>
+            display: grid;
+
+            gap: 1rem;
+
+        }
+
+
+
+        .quiz-option {
+
+            background: white;
+
+            border: 2px solid #e9ecef;
+
+            border-radius: 10px;
+
+            padding: 1rem;
+
+            cursor: pointer;
+
+            transition: all 0.3s ease;
+
+            text-align: center;
+
+            font-weight: 500;
+
+        }
+
+
+
+        .quiz-option:hover {
+
+            border-color: var(--primary);
+
+            transform: translateY(-2px);
+
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+
+        }
+
+
+
+        .quiz-option.selected {
+
+            background: var(--primary);
+
+            color: white;
+
+            border-color: var(--primary);
+
+        }
+
+
+
+        .quiz-result {
+
+            text-align: center;
+
+            padding: 1rem;
+
+            background: var(--success);
+
+            color: white;
+
+            border-radius: 10px;
+
+            display: none;
+
+        }
+
+
+
+        /* Features Section */
+
+        .features {
+
+            padding: 5rem 0;
+
+            background: white;
+
+        }
+
+
+
+        .section-title {
+
+            text-align: center;
+
+            font-size: 2.5rem;
+
+            margin-bottom: 3rem;
+
+            color: var(--dark);
+
+            position: relative;
+
+        }
+
+
+
+        .section-title::after {
+
+            content: '';
+
+            position: absolute;
+
+            bottom: -10px;
+
+            right: 50%;
+
+            transform: translateX(50%);
+
+            width: 100px;
+
+            height: 3px;
+
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+
+            border-radius: 2px;
+
+        }
+
+
+
+        .features-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+            gap: 2rem;
+
+        }
+
+
+
+        .feature-card {
+
+            background: var(--light);
+
+            padding: 2.5rem;
+
+            border-radius: 15px;
+
+            text-align: center;
+
+            transition: all 0.3s ease;
+
+            border: 1px solid transparent;
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+
+
+        .feature-card::before {
+
+            content: '';
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 5px;
+
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+
+            transform: scaleX(0);
+
+            transition: transform 0.3s ease;
+
+        }
+
+
+
+        .feature-card:hover::before {
+
+            transform: scaleX(1);
+
+        }
+
+
+
+        .feature-card:hover {
+
+            transform: translateY(-10px);
+
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+
+        }
+
+
+
+        .feature-icon {
+
+            font-size: 3rem;
+
+            color: var(--primary);
+
+            margin-bottom: 1.5rem;
+
+        }
+
+
+
+        .feature-card h3 {
+
+            font-size: 1.5rem;
+
+            margin-bottom: 1rem;
+
+            color: var(--dark);
+
+        }
+
+
+
+        .feature-card p {
+
+            color: #666;
+
+            line-height: 1.6;
+
+        }
+
+
+
+        /* Quiz Types Section */
+
+        .quiz-types {
+
+            padding: 5rem 0;
+
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+            color: white;
+
+        }
+
+
+
+        .types-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+            gap: 2rem;
+
+            margin-top: 3rem;
+
+        }
+
+
+
+        .type-card {
+
+            background: rgba(255, 255, 255, 0.1);
+
+            backdrop-filter: blur(10px);
+
+            padding: 2rem;
+
+            border-radius: 15px;
+
+            text-align: center;
+
+            transition: all 0.3s ease;
+
+            border: 1px solid rgba(255, 255, 255, 0.2);
+
+        }
+
+
+
+        .type-card:hover {
+
+            transform: translateY(-10px);
+
+            background: rgba(255, 255, 255, 0.2);
+
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+
+        }
+
+
+
+        .type-icon {
+
+            font-size: 2.5rem;
+
+            margin-bottom: 1rem;
+
+            color: var(--accent);
+
+        }
+
+
+
+        .type-card h3 {
+
+            font-size: 1.3rem;
+
+            margin-bottom: 1rem;
+
+        }
+
+
+
+        .type-card p {
+
+            opacity: 0.9;
+
+            font-size: 0.95rem;
+
+        }
+
+
+
+        /* Pricing Section */
+
+        .pricing {
+
+            padding: 5rem 0;
+
+            background: white;
+
+        }
+
+
+
+        .pricing-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+            gap: 2rem;
+
+            margin-top: 3rem;
+
+        }
+
+
+
+        .pricing-card {
+
+            background: white;
+
+            border-radius: 15px;
+
+            padding: 2.5rem;
+
+            text-align: center;
+
+            transition: all 0.3s ease;
+
+            border: 2px solid #e9ecef;
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+
+
+        .pricing-card.popular {
+
+            border-color: var(--accent);
+
+            transform: scale(1.05);
+
+            box-shadow: 0 15px 30px rgba(247, 37, 133, 0.2);
+
+        }
+
+
+
+        .pricing-card.popular::before {
+
+            content: 'הכי פופולרי';
+
+            position: absolute;
+
+            top: 20px;
+
+            left: -30px;
+
+            background: var(--accent);
+
+            color: white;
+
+            padding: 5px 30px;
+
+            transform: rotate(-45deg);
+
+            font-size: 0.8rem;
+
+            font-weight: bold;
+
+        }
+
+
+
+        .pricing-card:hover {
+
+            transform: translateY(-10px);
+
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+
+        }
+
+
+
+        .pricing-card.popular:hover {
+
+            transform: scale(1.05) translateY(-10px);
+
+        }
+
+
+
+        .pricing-header {
+
+            margin-bottom: 2rem;
+
+        }
+
+
+
+        .pricing-name {
+
+            font-size: 1.5rem;
+
+            color: var(--dark);
+
+            margin-bottom: 1rem;
+
+        }
+
+
+
+        .pricing-price {
+
+            font-size: 3rem;
+
+            font-weight: bold;
+
+            color: var(--primary);
+
+            margin-bottom: 0.5rem;
+
+        }
+
+
+
+        .pricing-period {
+
+            color: #666;
+
+            font-size: 0.9rem;
+
+        }
+
+
+
+        .pricing-features {
+
+            list-style: none;
+
+            margin-bottom: 2rem;
+
+        }
+
+
+
+        .pricing-features li {
+
+            padding: 0.8rem 0;
+
+            border-bottom: 1px solid #e9ecef;
+
+            color: #666;
+
+        }
+
+
+
+        .pricing-features li:last-child {
+
+            border-bottom: none;
+
+        }
+
+
+
+        .pricing-features li i {
+
+            color: var(--success);
+
+            margin-left: 0.5rem;
+
+        }
+
+
+
+        /* CTA Section */
+
+        .cta-section {
+
+            padding: 5rem 0;
+
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+
+            color: white;
+
+            text-align: center;
+
+        }
+
+
+
+        .cta-section h2 {
+
+            font-size: 2.5rem;
+
+            margin-bottom: 1rem;
+
+        }
+
+
+
+        .cta-section p {
+
+            font-size: 1.2rem;
+
+            margin-bottom: 2rem;
+
+            max-width: 600px;
+
+            margin-left: auto;
+
+            margin-right: auto;
+
+            opacity: 0.9;
+
+        }
+
+
+
+        /* Footer */
+
+        footer {
+
+            background: var(--dark);
+
+            color: white;
+
+            padding: 3rem 0 1rem;
+
+        }
+
+
+
+        .footer-content {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+            gap: 2rem;
+
+            margin-bottom: 2rem;
+
+        }
+
+
+
+        .footer-column h3 {
+
+            font-size: 1.3rem;
+
+            margin-bottom: 1.5rem;
+
+            color: var(--accent);
+
+        }
+
+
+
+        .footer-links {
+
+            list-style: none;
+
+        }
+
+
+
+        .footer-links li {
+
+            margin-bottom: 0.8rem;
+
+        }
+
+
+
+        .footer-links a {
+
+            color: #ccc;
+
+            text-decoration: none;
+
+            transition: color 0.3s;
+
+        }
+
+
+
+        .footer-links a:hover {
+
+            color: var(--accent);
+
+        }
+
+
+
+        .social-links {
+
+            display: flex;
+
+            gap: 1rem;
+
+            margin-top: 1rem;
+
+        }
+
+
+
+        .social-links a {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            width: 40px;
+
+            height: 40px;
+
+            background: rgba(255, 255, 255, 0.1);
+
+            border-radius: 50%;
+
+            color: white;
+
+            transition: all 0.3s;
+
+        }
+
+
+
+        .social-links a:hover {
+
+            background: var(--accent);
+
+            transform: translateY(-3px);
+
+        }
+
+
+
+        .footer-bottom {
+
+            text-align: center;
+
+            padding-top: 2rem;
+
+            border-top: 1px solid rgba(255,255,255,0.1);
+
+            color: #999;
+
+            font-size: 0.9rem;
+
+        }
+
+
+
+        /* Admin Panel Styles */
+
+        #admin-overlay {
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            background: rgba(0, 0, 0, 0.95);
+
+            color: white;
+
+            display: none;
+
+            justify-content: center;
+
+            align-items: center;
+
+            flex-direction: column;
+
+            z-index: 9999;
+
+            text-align: center;
+
+            padding: 20px;
+
+        }
+
+
+
+        #lock-screen {
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+
+            color: white;
+
+            display: none;
+
+            justify-content: center;
+
+            align-items: center;
+
+            flex-direction: column;
+
+            z-index: 10000;
+
+            font-size: 1.5rem;
+
+            font-weight: bold;
+
+            padding: 20px;
+
+            text-align: center;
+
+        }
+
+
+
+        .lock-content {
+
+            background: rgba(255, 255, 255, 0.1);
+
+            backdrop-filter: blur(10px);
+
+            padding: 3rem;
+
+            border-radius: 15px;
+
+            border: 1px solid rgba(255, 255, 255, 0.2);
+
+            max-width: 500px;
+
+            width: 90%;
+
+        }
+
+
+
+        .admin-panel {
+
+            background: white;
+
+            color: var(--dark);
+
+            padding: 2rem;
+
+            border-radius: 15px;
+
+            max-width: 500px;
+
+            width: 90%;
+
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+
+        }
+
+
+
+        .admin-panel h2 {
+
+            margin-bottom: 1.5rem;
+
+            color: var(--primary);
+
+            text-align: center;
+
+        }
+
+
+
+        .admin-controls {
+
+            display: grid;
+
+            gap: 1rem;
+
+            margin-bottom: 2rem;
+
+        }
+
+
+
+        .admin-button {
+
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+
+            color: white;
+
+            padding: 12px 20px;
+
+            border: none;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            transition: all 0.3s;
+
+            font-size: 1rem;
+
+        }
+
+
+
+        .admin-button:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
+
+        }
+
+
+
+        .admin-button.danger {
+
+            background: linear-gradient(45deg, #ff4757, #ff3742);
+
+        }
+
+
+
+        .admin-button.danger:hover {
+
+            background: linear-gradient(45deg, #ff3742, #ff4757);
+
+        }
+
+
+
+        .admin-button.secondary {
+
+            background: var(--light);
+
+            color: var(--dark);
+
+        }
+
+
+
+        .admin-button.secondary:hover {
+
+            background: #e9ecef;
+
+        }
+
+
+
+        .admin-input {
+
+            padding: 12px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 5px;
+
+            font-size: 1rem;
+
+            margin-bottom: 1rem;
+
+            width: 100%;
+
+            background: white;
+
+            color: var(--dark);
+
+        }
+
+
+
+        .lock-icon {
+
+            font-size: 4rem;
+
+            margin-bottom: 1rem;
+
+            color: var(--accent);
+
+            animation: pulse 2s infinite;
+
+        }
+
+
+
+        @keyframes pulse {
+
+            0%, 100% { transform: scale(1); }
+
+            50% { transform: scale(1.1); }
+
+        }
+
+
+
+        /* Mobile Responsive */
+
+        @media (max-width: 768px) {
+
+            .nav-links {
+
+                display: none;
+
+            }
+
+
+
+            .hero-content {
+
+                grid-template-columns: 1fr;
+
+                text-align: center;
+
+            }
+
+
+
+            .hero-text h1 {
+
+                font-size: 2.5rem;
+
+            }
+
+
+
+            .hero-buttons {
+
+                justify-content: center;
+
+            }
+
+
+
+            .section-title {
+
+                font-size: 2rem;
+
+            }
+
+            
+
+            .admin-panel {
+
+                padding: 1.5rem;
+
+            }
+
+            
+
+            .lock-content {
+
+                padding: 2rem;
+
+            }
+
+            
+
+            #lock-screen {
+
+                font-size: 1.2rem;
+
+            }
+
+            
+
+            .pricing-card.popular {
+
+                transform: none;
+
+            }
+
+            
+
+            .pricing-card.popular:hover {
+
+                transform: translateY(-10px);
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
 
     <header>
-        <nav class="container" role="navigation" aria-label="תפריט ניווט ראשי">
+
+        <nav class="container">
+
             <div class="logo">
-                <i class="fas fa-mouse-pointer" aria-hidden="true"></i>
-                <a href="#home" aria-label="קליקרים - חזרה לעמוד הבית">קליקרים</a>
+
+                <i class="fas fa-mouse-pointer"></i>
+
+                קליקרים
+
             </div>
-            <ul class="nav-links" role="menubar">
-                <li role="none"><a href="#home" role="menuitem">בית</a></li>
-                <li role="none"><a href="#features" role="menuitem">יתרונות</a></li>
-                <li role="none"><a href="#quiz-types" role="menuitem">סוגי חידונים</a></li>
-                <li role="none"><a href="#pricing" role="menuitem">מחירים</a></li>
-                <li role="none"><a href="#contact-form-section" role="menuitem">צור קשר</a></li>
+
+            <ul class="nav-links">
+
+                <li><a href="#home">בית</a></li>
+
+                <li><a href="#features">יתרונות</a></li>
+
+                <li><a href="#quiz-types">סוגי חידונים</a></li>
+
+                <li><a href="#pricing">מחירים</a></li>
+
+                <li><a href="#contact">צור קשר</a></li>
+
             </ul>
+
             <div class="header-actions">
-                <button class="admin-btn" onclick="showAdminPanel()" aria-controls="admin-overlay" aria-label="כניסה לפאנל ניהול אתר">
-                    <i class="fas fa-cog" aria-hidden="true"></i> ניהול אתר
+
+                <button class="admin-btn" onclick="showAdminPanel()">
+
+                    <i class="fas fa-cog"></i> ניהול אתר
+
                 </button>
+
             </div>
+
         </nav>
+
     </header>
 
-    <main id="main-content" role="main">
-        <section id="home" class="hero" aria-labelledby="hero-title">
+
+
+    <main>
+
+        <!-- Hero Section -->
+
+        <section id="home" class="hero">
+
             <div class="container">
+
                 <div class="hero-content">
+
                     <div class="hero-text">
-                        <h1 id="hero-title">חידונים <span class="typewriter">אינטראקטיביים</span></h1>
-                        <h2>שמניעים לפעולה</h2>
+
+                        <h1>חידונים <span class="typewriter">אינטראקטיביים</span></h1>
+
+                        <h2 style="font-size: 2rem; margin-bottom: 1rem; color: var(--accent);">שמניעים לפעולה</h2>
+
                         <p>הפוך את הקמפיינים שלך לחוויה בלתי נשכחת עם חידונים מותאמים אישית שמגבירים מעורבות, אוספים לידים ומניעים המרות.</p>
+
                         <div class="hero-buttons">
-                            <a href="#pricing" class="cta-button" role="button">התחל עכשיו בחינם</a>
-                            <a href="#quiz-types" class="cta-button secondary" role="button">ראה דוגמאות</a>
+
+                            <a href="#pricing" class="cta-button">התחל עכשיו בחינם</a>
+
+                            <a href="#quiz-types" class="cta-button secondary">ראה דוגמאות</a>
+
                         </div>
+
                     </div>
-                    <div class="hero-demo" aria-label="הדגמת חידון אינטראקטיבי">
+
+                    <div class="hero-demo">
+
                         <div class="demo-header">
+
                             <h3>דמו חידון אינטראקטיבי</h3>
+
                             <p>נסה עכשיו את החוויה</p>
+
                         </div>
-                        <form class="quiz-container" role="radiogroup" aria-labelledby="demo-question">
-                            <h4 class="quiz-question" id="demo-question">מה הדבר החשוב ביותר בשיווק דיגיטלי היום?</h4>
+
+                        <div class="quiz-container">
+
+                            <div class="quiz-question" id="demo-question">מה הדבר החשוב ביותר בשיווק דיגיטלי היום?</div>
+
                             <div class="quiz-options">
-                                <button type="button" class="quiz-option" role="radio" aria-checked="false" onclick="selectOption(this, 'option1')">נוכחות ברשתות חברתיות</button>
-                                <button type="button" class="quiz-option" role="radio" aria-checked="false" onclick="selectOption(this, 'option2')">תוכן איכותי</button>
-                                <button type="button" class="quiz-option" role="radio" aria-checked="false" onclick="selectOption(this, 'option3')">חוויית משתמש</button>
-                                <button type="button" class="quiz-option" role="radio" aria-checked="false" onclick="selectOption(this, 'option4')">נתונים ואנליטיקה</button>
+
+                                <div class="quiz-option" onclick="selectOption(this)">נוכחות ברשתות חברתיות</div>
+
+                                <div class="quiz-option" onclick="selectOption(this)">תוכן איכותי</div>
+
+                                <div class="quiz-option" onclick="selectOption(this)">חוויית משתמש</div>
+
+                                <div class="quiz-option" onclick="selectOption(this)">נתונים ואנליטיקה</div>
+
                             </div>
-                        </form>
-                        <button class="cta-button" onclick="showQuizResult()" aria-controls="quiz-result" style="width: 100%;">
-                            <i class="fas fa-check" aria-hidden="true"></i> בדוק תשובה
+
+                        </div>
+
+                        <button class="cta-button" onclick="showQuizResult()" style="width: 100%;">
+
+                            <i class="fas fa-check"></i> בדוק תשובה
+
                         </button>
-                        <div class="quiz-result" id="quiz-result" role="alert" aria-live="assertive" style="display: none;">
-                            <i class="fas fa-trophy" aria-hidden="true"></i>
+
+                        <div class="quiz-result" id="quiz-result">
+
+                            <i class="fas fa-trophy"></i>
+
                             <h4>כל התשובות נכונות!</h4>
+
                             <p>בשיווק דיגיטלי מודרני, השילוב בין כל הגורמים הוא המפתח להצלחה</p>
+
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
+
         </section>
 
-        <section id="features" class="features" aria-labelledby="features-title">
+
+
+        <!-- Features Section -->
+
+        <section id="features" class="features">
+
             <div class="container">
-                <h2 class="section-title" id="features-title">למה לבחור בקליקרים?</h2>
+
+                <h2 class="section-title">למה לבחור בקליקרים?</h2>
+
                 <div class="features-grid">
-                    <div class="feature-card" role="region" aria-label="תכונה: הגדלת מעורבות">
-                        <div class="feature-icon" aria-hidden="true">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+
                             <i class="fas fa-chart-line"></i>
+
                         </div>
+
                         <h3>הגדלת מעורבות</h3>
+
                         <p>חידונים אינטראקטיביים מעלים את זמן השהייה באתר ב-300% בממוצע ומגבירים את המעורבות של הגולשים.</p>
+
                     </div>
-                    <div class="feature-card" role="region" aria-label="תכונה: איסוף לידים איכותיים">
-                        <div class="feature-icon" aria-hidden="true">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+
                             <i class="fas fa-users"></i>
+
                         </div>
+
                         <h3>איסוף לידים איכותיים</h3>
+
                         <p>אסף פרטי קשר איכותיים דרך חידונים מותאמים עם שיעורי המרה גבוהים פי 5 מטופס רגיל.</p>
+
                     </div>
-                    <div class="feature-card" role="region" aria-label="תכונה: למידת לקוחות">
-                        <div class="feature-icon" aria-hidden="true">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+
                             <i class="fas fa-brain"></i>
+
                         </div>
+
                         <h3>למידת לקוחות</h3>
+
                         <p>קבל תובנות עמוקות על הקהל שלך - העדפות, צרכים והתנהגויות דרך התשובות שלהם.</p>
+
                     </div>
-                    <div class="feature-card" role="region" aria-label="תכונה: התאמה אישית מלאה">
-                        <div class="feature-icon" aria-hidden="true">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+
                             <i class="fas fa-rocket"></i>
+
                         </div>
+
                         <h3>התאמה אישית מלאה</h3>
+
                         <p>עיצוב והתאמה של כל חידון למותג שלך עם מגוון תבניות, צבעים ואפשרויות התאמה.</p>
+
                     </div>
-                    <div class="feature-card" role="region" aria-label="תכונה: שיתוף ויראלי">
-                        <div class="feature-icon" aria-hidden="true">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+
                             <i class="fas fa-share-alt"></i>
+
                         </div>
+
                         <h3>שיתוף ויראלי</h3>
+
                         <p>גולשים משתפים את התוצאות שלהם ברשתות החברתיות ומביאים לך חשיפה אורגנית נוספת.</p>
+
                     </div>
-                    <div class="feature-card" role="region" aria-label="תכונה: רספונסיבי מושלם">
-                        <div class="feature-icon" aria-hidden="true">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+
                             <i class="fas fa-mobile-alt"></i>
+
                         </div>
+
                         <h3>רספונסיבי מושלם</h3>
+
                         <p>חווית משתמש מושלמת בכל מכשיר - מחשב, טאבלט או סמארטפון.</p>
+
                     </div>
+
                 </div>
+
             </div>
+
         </section>
 
-        <section id="quiz-types" class="quiz-types" aria-labelledby="quiz-types-title">
+
+
+        <!-- Quiz Types Section -->
+
+        <section id="quiz-types" class="quiz-types">
+
             <div class="container">
-                <h2 class="section-title" id="quiz-types-title">סוגי חידונים</h2>
+
+                <h2 class="section-title">סוגי חידונים</h2>
+
                 <div class="types-grid">
-                    <div class="type-card" role="region" aria-label="סוג חידון: חידון אישיות">
-                        <div class="type-icon" aria-hidden="true"><i class="fas fa-user-check"></i></div>
+
+                    <div class="type-card">
+
+                        <div class="type-icon">
+
+                            <i class="fas fa-user-check"></i>
+
+                        </div>
+
                         <h3>חידון אישיות</h3>
+
                         <p>חידונים שמאפיינים את האישיות של המשתמש ומתאימים לו המלצות מותאמות אישית.</p>
+
                     </div>
-                    <div class="type-card" role="region" aria-label="סוג חידון: חידון ידע">
-                        <div class="type-icon" aria-hidden="true"><i class="fas fa-graduation-cap"></i></div>
+
+                    <div class="type-card">
+
+                        <div class="type-icon">
+
+                            <i class="fas fa-graduation-cap"></i>
+
+                        </div>
+
                         <h3>חידון ידע</h3>
+
                         <p>בחן את הידע של הקהל שלך בתחום שלך וספק תובנות וערך נוסף.</p>
+
                     </div>
-                    <div class="type-card" role="region" aria-label="סוג חידון: חידון מוצר">
-                        <div class="type-icon" aria-hidden="true"><i class="fas fa-shopping-cart"></i></div>
+
+                    <div class="type-card">
+
+                        <div class="type-icon">
+
+                            <i class="fas fa-shopping-cart"></i>
+
+                        </div>
+
                         <h3>חידון מוצר</h3>
+
                         <p>עזר ללקוחות למצוא את המוצר המושלם עבורם דרך סדרת שאלות ממוקדות.</p>
+
                     </div>
-                    <div class="type-card" role="region" aria-label="סוג חידון: חידון העדפות">
-                        <div class="type-icon" aria-hidden="true"><i class="fas fa-heart"></i></div>
+
+                    <div class="type-card">
+
+                        <div class="type-icon">
+
+                            <i class="fas fa-heart"></i>
+
+                        </div>
+
                         <h3>חידון העדפות</h3>
+
                         <p>גלה מה הקהל שלך באמת אוהב ומעדיף כדי להתאים את ההצעה שלך.</p>
+
                     </div>
-                    <div class="type-card" role="region" aria-label="סוג חידון: חידון מדידה">
-                        <div class="type-icon" aria-hidden="true"><i class="fas fa-tachometer-alt"></i></div>
+
+                    <div class="type-card">
+
+                        <div class="type-icon">
+
+                            <i class="fas fa-tachometer-alt"></i>
+
+                        </div>
+
                         <h3>חידון מדידה</h3>
+
                         <p>מדוד רמות מיומנות, הבנה או מודעות בנושאים ספציפיים.</p>
+
                     </div>
-                    <div class="type-card" role="region" aria-label="סוג חידון: חידון משחק">
-                        <div class="type-icon" aria-hidden="true"><i class="fas fa-gamepad"></i></div>
+
+                    <div class="type-card">
+
+                        <div class="type-icon">
+
+                            <i class="fas fa-gamepad"></i>
+
+                        </div>
+
                         <h3>חידון משחק</h3>
+
                         <p>חוויה משחקית וכיפית שמשאירה את הגולשים מעורבים ומחזירה אותם שוב.</p>
+
                     </div>
+
                 </div>
+
             </div>
+
         </section>
 
-        <section id="pricing" class="pricing" aria-labelledby="pricing-title">
+
+
+        <!-- Pricing Section -->
+
+        <section id="pricing" class="pricing">
+
             <div class="container">
-                <h2 class="section-title" id="pricing-title">מחירים שקופים</h2>
+
+                <h2 class="section-title">מחירים שקופים</h2>
+
                 <div class="pricing-grid">
-                    <div class="pricing-card" role="region" aria-label="תוכנית בסיסית">
+
+                    <div class="pricing-card">
+
                         <div class="pricing-header">
+
                             <h3 class="pricing-name">בסיסי</h3>
-                            <div class="pricing-price" aria-label="149 שקלים לחודש">₪149</div>
+
+                            <div class="pricing-price">₪149</div>
+
                             <div class="pricing-period">לחודש</div>
+
                         </div>
-                        <ul class="pricing-features" role="list">
-                            <li role="listitem"><i class="fas fa-check" aria-hidden="true"></i> עד 5 חידונים</li>
-                            <li role="listitem"><i class="fas fa-check" aria-hidden="true"></i> 1,000 השתתפויות לחודש</li>
-                            <li role="listitem"><i class="fas fa-check" aria-hidden="true"></i> תבניות בסיסיות</li>
-                            <li role="listitem"><i class="fas fa-check" aria-hidden="true"></i> אנליטיקה בסיסית</li>
-                            <li role="listitem"><i class="fas fa-times" aria-hidden="true"></i> אינטגרציות</li>
+
+                        <ul class="pricing-features">
+
+                            <li><i class="fas fa-check"></i> עד 5 חידונים</li>
+
+                            <li><i class="fas fa-check"></i> 1,000 השתתפויות לחודש</li>
+
+                            <li><i class="fas fa-check"></i> תבניות בסיסיות</li>
+
+                            <li><i class="fas fa-check"></i> אנליטיקה בסיסית</li>
+
+                            <li><i class="fas fa-times"></i> אינטגרציות</li>
+
                         </ul>
-                        <a href="#contact-form-section" class="cta-button secondary" role="button" style="width: 100%;">התחל עכשיו</a>
+
+                        <a href="#contact" class="cta-button secondary" style="width: 100%;">התחל עכשיו</a>
+
                     </div>
-                    <div class="pricing-card popular" role="region" aria-label="תוכנית מקצועי - הכי פופולרית">
-                         <div class="pricing-header">
+
+                    <div class="pricing-card popular">
+
+                        <div class="pricing-header">
+
                             <h3 class="pricing-name">מקצועי</h3>
-                            <div class="pricing-price" aria-label="299 שקלים לחודש">₪299</div>
+
+                            <div class="pricing-price">₪299</div>
+
                             <div class="pricing-period">לחודש</div>
+
                         </div>
-                        <ul class="pricing-features" role="list">
-                            <li role="listitem"><i class="fas fa-check" aria-hidden="true"></i> חידונים בלתי מוגבלים</li>
-                            <li role="listitem"><i class="fas fa-check" aria-hidden="true"></i> 10,000 השתתפויות לחודש</li>
-                            <li role="listitem"><i class="fas fa-check" aria-hidden="true"></i> כל התבניות</li>
-                            <li role="listitem"><i class="fas fa-check" aria-hidden="true"></i> אנליטיקה מתקדמת</li>
-                            <li role="listitem"><i class="fas fa-check" aria-hidden="true"></i> אינטגרציות בסיסיות</li>
+
+                        <ul class="pricing-features">
+
+                            <li><i class="fas fa-check"></i> חידונים בלתי מוגבלים</li>
+
+                            <li><i class="fas fa-check"></i> 10,000 השתתפויות לחודש</li>
+
+                            <li><i class="fas fa-check"></i> כל התבניות</li>
+
+                            <li><i class="fas fa-check"></i> אנליטיקה מתקדמת</li>
+
+                            <li><i class="fas fa-check"></i> אינטגרציות בסיסיות</li>
+
                         </ul>
-                        <a href="#contact-form-section" class="cta-button" role="button" style="width: 100%;">התחל עכשיו</a>
+
+                        <a href="#contact" class="cta-button" style="width: 100%;">התחל עכשיו</a>
+
                     </div>
-                    <div class="pricing-card" role="region" aria-label="תוכנית ארגוני">
-                         <div class="pricing-header">
+
+                    <div class="pricing-card">
+
+                        <div class="pricing-header">
+
                             <h3 class="pricing-name">ארגוני</h3>
-                            <div class="pricing-price" aria-label="599 שקלים לחודש">₪599</div>
+
+                            <div class="pricing-price">₪599</div>
+
                             <div class="pricing-period">לחודש</div>
+
                         </div>
-                        <ul class="pricing-features" role="list">
-                            <li role="listitem"><i class="fas fa-check" aria-hidden="true"></i> הכל מהתוכנית המקצועית</li>
-                            <li role="listitem"><i class="fas fa-check" aria-hidden="true"></i> השתתפויות בלתי מוגבלות</li>
-                            <li role="listitem"><i class="fas fa-check" aria-hidden="true"></i> התאמה אישית מלאה</li>
-                            <li role="listitem"><i class="fas fa-check" aria-hidden="true"></i> כל האינטגרציות</li>
-                            <li role="listitem"><i class="fas fa-check" aria-hidden="true"></i> תמיכה פרימיום</li>
+
+                        <ul class="pricing-features">
+
+                            <li><i class="fas fa-check"></i> הכל מהתוכנית המקצועית</li>
+
+                            <li><i class="fas fa-check"></i> השתתפויות בלתי מוגבלות</li>
+
+                            <li><i class="fas fa-check"></i> התאמה אישית מלאה</li>
+
+                            <li><i class="fas fa-check"></i> כל האינטגרציות</li>
+
+                            <li><i class="fas fa-check"></i> תמיכה פרימיום</li>
+
                         </ul>
-                        <a href="#contact-form-section" class="cta-button secondary" role="button" style="width: 100%;">התחל עכשיו</a>
+
+                        <a href="#contact" class="cta-button secondary" style="width: 100%;">התחל עכשיו</a>
+
                     </div>
+
                 </div>
+
             </div>
+
         </section>
-        
-        <section id="contact-form-section" class="cta-section" aria-labelledby="cta-title">
+
+
+
+        <!-- CTA Section -->
+
+        <section class="cta-section">
+
             <div class="container">
-                <h2 id="cta-title">מוכן להתחיל ליצור חידונים מדהימים?</h2>
+
+                <h2>מוכן להתחיל ליצור חידונים מדהימים?</h2>
+
                 <p>הצטרף לאלפי עסקים שכבר מגבירים מעורבות ואוספים לידים איכותיים עם קליקרים</p>
-                
-                <form id="contact-form" aria-label="טופס יצירת קשר">
-                    <div style="margin-bottom: 1rem;">
-                        <label for="full-name" style="color: white; display: block; margin-bottom: 5px;">שם מלא:</label>
-                        <input type="text" id="full-name" name="full-name" class="admin-input" required aria-required="true" placeholder="הכנס שם מלא">
-                    </div>
-                    <div style="margin-bottom: 1rem;">
-                        <label for="email" style="color: white; display: block; margin-bottom: 5px;">דוא"ל:</label>
-                        <input type="email" id="email" name="email" class="admin-input" required aria-required="true" placeholder="הכנס כתובת דואל">
-                    </div>
-                    <button type="submit" class="cta-button" role="button" style="display: block; width: 100%;">
-                        <i class="fas fa-paper-plane" aria-hidden="true"></i> שלח פרטים
-                    </button>
-                </form>
+
+                <a href="#contact" class="cta-button">התחל ניסיון חינם 14 יום</a>
+
             </div>
+
         </section>
+
     </main>
 
-    <footer role="contentinfo">
+
+
+    <footer id="contact">
+
         <div class="container">
+
             <div class="footer-content">
+
                 <div class="footer-column">
+
                     <h3>קליקרים</h3>
+
                     <p>פלטפורמה מובילה ליצירת חידונים אינטראקטיביים שמניעים תוצאות לעסקים.</p>
+
                     <div class="social-links">
-                        <a href="#" aria-label="פייסבוק"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
-                        <a href="#" aria-label="לינקדאין"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
-                        </div>
-                </div>
-                <div class="footer-column">
-                    <h3>קישורים מהירים</h3>
-                    <ul class="footer-links" role="list">
-                        <li role="listitem"><a href="#home">בית</a></li>
-                        <li role="listitem"><a href="#features">יתרונות</a></li>
-                        <li role="listitem"><a href="#pricing">מחירים</a></li>
-                        <li role="listitem"><a href="#contact-form-section">צור קשר</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>מסמכים חוקיים</h3>
-                    <ul class="footer-links" role="list">
-                        <li role="listitem"><a href="#accessibility-statement" onclick="showLegalDoc('accessibility')" aria-controls="legal-modal-accessibility">הצהרת נגישות</a></li>
-                        <li role="listitem"><a href="#privacy-policy" onclick="showLegalDoc('privacy')" aria-controls="legal-modal-privacy">מדיניות פרטיות</a></li>
-                        <li role="listitem"><a href="#terms-of-use" onclick="showLegalDoc('terms')" aria-controls="legal-modal-terms">תנאי שימוש</a></li>
-                        <li role="listitem"><a href="#cookies-policy" onclick="showLegalDoc('cookies')" aria-controls="legal-modal-cookies">הסכמת Cookies</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>© 2025 קליקרים. כל הזכויות שמורות.</p>
-            </div>
-        </div>
-    </footer>
 
-    <div id="cookie-consent" role="dialog" aria-modal="true" aria-labelledby="cookie-consent-title" style="position: fixed; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.9); color: white; padding: 20px; text-align: center; z-index: 10001; display: block;">
-        <h3 id="cookie-consent-title" style="margin-bottom: 10px;">שימוש ב-Cookies</h3>
-        <p style="margin-bottom: 15px;">אנו משתמשים ב-Cookies כדי להבטיח שתקבל את חוויית הגלישה הטובה ביותר. לפרטים נוספים, קרא את <a href="#cookies-policy" onclick="showLegalDoc('cookies')" style="color: var(--accent);">מדיניות ה-Cookies</a> שלנו.</p>
-        <button onclick="acceptCookies()" class="ac-btn" style="background: var(--success); border-color: var(--success);">אני מסכים</button>
-    </div>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
 
-    <div id="legal-modal-accessibility" class="legal-doc-content" role="document" aria-label="הצהרת נגישות מלאה" style="display: none;">
-        <h2>הצהרת נגישות לאתר "קליקרים"</h2>
-        <p>אתר זה הונגש בהתאם להוראות תקן ישראלי 5568 ברמת AA. נעשה מאמץ להפוך את כל חלקי האתר לנגישים. אם נתקלתם בקושי, אנא צרו קשר עם רכז הנגישות שלנו.</p>
-        <p><strong>רכז נגישות:</strong> [שם רכז/ת] | <strong>דוא"ל:</strong> [email protected] | <strong>טלפון:</strong> [מספר טלפון]</p>
-        </div>
-    
-    <div id="legal-modal-privacy" class="legal-doc-content" role="document" aria-label="מדיניות פרטיות מלאה" style="display: none;">
-        <h2>מדיניות פרטיות</h2>
-        <p>קליקרים מחויבת לשמירה על פרטיות המשתמשים. אנו אוספים מידע ליצירת קשר, שיפור השירות והתאמה אישית של תוכן. המידע אינו מועבר לצד שלישי, אלא אם נדרש על פי חוק.</p>
-        </div>
-    
-    <div id="legal-modal-terms" class="legal-doc-content" role="document" aria-label="תנאי שימוש מלאים" style="display: none;">
-        <h2>תנאי שימוש</h2>
-        <p>השימוש בשירות "קליקרים" כפוף לתנאים אלו. על המשתמש להימנע משימוש לרעה בפלטפורמה. קליקרים שומרת את הזכות לשנות את התנאים מעת לעת.</p>
-        </div>
-    
-    <div id="legal-modal-cookies" class="legal-doc-content" role="document" aria-label="מדיניות קוקיז מלאה" style="display: none;">
-        <h2>מדיניות Cookies</h2>
-        <p>אנו משתמשים ב-Cookies חיוניים וניתוחיים. ניתן לנהל את העדפות ה-Cookies שלך בכל עת דרך הגדרות הדפדפן.</p>
-        </div>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
 
-    <div id="admin-overlay" role="dialog" aria-modal="true" aria-labelledby="admin-title">
-        <div class="admin-panel">
-            <h2 id="admin-title">כניסה למערכת הניהול</h2>
-            </div>
-    </div>
-    <div id="lock-screen" role="alertdialog" aria-modal="true" aria-labelledby="lock-title">
-        <div class="lock-content">
-            <i class="fas fa-lock lock-icon" aria-hidden="true"></i>
-            <h2 id="lock-title">האתר נעול זמנית</h2>
-            <p>הגישה מוגבלת עקב חשש לפעילות חריגה. אנא נסה שנית מאוחר יותר.</p>
-        </div>
-    </div>
+                        <a href="#"><i class="fab fa-tw
 
-    <script>
-        // דוגמה ל-JS עבור הנגשה
-        function toggleContrast() {
-            document.body.classList.toggle('high-contrast');
-        }
-        
-        function increaseText() {
-            // לוגיקה להגדלת הטקסט בהתאם לתקן (למשל, 200%)
-            const currentSize = parseFloat(getComputedStyle(document.body).fontSize);
-            const newSize = Math.min(currentSize * 1.1, 24); // הגבלה למניעת טקסט ענק
-            document.body.style.fontSize = `${newSize}px`;
-        }
-        
-        function selectOption(selectedElement, optionId) {
-            // לוגיקה לבחירת אופציה בחידון (כמו radio button)
-            const options = document.querySelectorAll('.quiz-option');
-            options.forEach(opt => {
-                opt.classList.remove('selected');
-                opt.setAttribute('aria-checked', 'false');
-            });
-            selectedElement.classList.add('selected');
-            selectedElement.setAttribute('aria-checked', 'true');
-        }
-
-        function showQuizResult() {
-            // הצגת תוצאת החידון
-            document.getElementById('quiz-result').style.display = 'block';
-            document.getElementById('quiz-result').focus(); // העברת פוקוס לרכיב התוצאה
-        }
-
-        function showAdminPanel() {
-             // הצגת פאנל הניהול הנסתר
-             document.getElementById('admin-overlay').style.display = 'flex';
-             document.getElementById('admin-overlay').focus(); // העברת פוקוס
-        }
-        
-        // לוגיקה להצגת המסמכים המשפטיים בתוך Modal נגיש
-        function showLegalDoc(type) {
-             const modal = document.getElementById(`legal-modal-${type}`);
-             if (modal) {
-                 // **ביישום אמיתי, יש להציג את התוכן בתוך Modal נגיש (dialog)
-                 // עם כפתור סגירה נגיש ותמיכה בסגירה עם מקש ESC.**
-                 // לשם הדוגמה, רק נציג Alert.
-                 const docText = modal.textContent.trim();
-                 alert(`טקסט המסמך: ${docText.substring(0, 300)}...`);
-             }
-        }
-
-        function acceptCookies() {
-             // לוגיקה לאישור קוקיז
-             document.getElementById('cookie-consent').style.display = 'none';
-        }
-        
-        // בדיקת ניגודיות: לוודא שקוד ה-CSS כולל סגנון high-contrast
-        document.addEventListener('DOMContentLoaded', () => {
-             // הסתרת מסך הנעילה אם הוא מופיע בטעות
-             document.getElementById('lock-screen').style.display = 'none';
-        });
-        
-    </script>
-</body>
-</html>
