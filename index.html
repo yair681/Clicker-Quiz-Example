@@ -30,101 +30,6 @@
             min-height: 100vh;
         }
 
-        /* Accessibility Toggle Button */
-        .accessibility-toggle-btn {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            z-index: 1002;
-            transition: transform 0.3s ease;
-        }
-
-        .accessibility-toggle-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .accessibility-toggle-btn:focus {
-            outline: 2px solid var(--accent);
-        }
-
-        /* Accessibility Widget */
-        .accessibility-widget {
-            position: fixed;
-            top: 80px;
-            right: 20px;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            padding: 10px;
-            z-index: 1001;
-            display: none;
-        }
-
-        .accessibility-widget.active {
-            display: block;
-        }
-
-        .accessibility-btn {
-            display: block;
-            background: var(--primary);
-            color: white;
-            padding: 8px;
-            margin: 5px 0;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-align: right;
-            font-size: 0.9rem;
-        }
-
-        .accessibility-btn:focus {
-            outline: 2px solid var(--accent);
-        }
-
-        /* High Contrast */
-        body.high-contrast {
-            background: #000 !important;
-            color: #fff !important;
-        }
-
-        body.high-contrast * {
-            background: #000 !important;
-            color: #fff !important;
-            border-color: #fff !important;
-        }
-
-        /* Grayscale */
-        body.grayscale {
-            filter: grayscale(100%);
-        }
-
-        /* Large Text */
-        body.large-text {
-            font-size: 1.2em;
-        }
-
-        /* Focus Highlight */
-        body.focus-highlight :focus {
-            outline: 3px solid #0000ff;
-            outline-offset: 2px;
-        }
-
-        /* Large Cursor */
-        body.large-cursor {
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="black" d="M3 3l18 18-4-4-4 4-3-3 4-4-4-4 3-3 4 4 4-4-3-3-4 4-4-4z"/></svg>') 16 16, auto;
-        }
-
         /* Cookie Banner */
         .cookie-banner {
             position: fixed;
@@ -170,6 +75,81 @@
             border: 2px solid var(--primary);
             z-index: 1002;
         }
+        
+        /* Accessibility Button & Panel Styles (FREE VERSION) */
+        #accessibility-button {
+            position: fixed;
+            bottom: 60px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        #accessibility-button:hover {
+            background: var(--accent);
+            transform: scale(1.05);
+        }
+
+        #accessibility-panel {
+            position: fixed;
+            bottom: 120px;
+            right: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            width: 180px;
+        }
+
+        #accessibility-panel.visible {
+            display: flex;
+        }
+
+        .acc-option {
+            background: var(--light);
+            color: var(--dark);
+            border: 1px solid #ddd;
+            padding: 8px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: right;
+            transition: background 0.2s;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end; /* יישור לימין */
+        }
+
+        .acc-option i {
+            margin-left: 10px;
+            color: var(--primary);
+        }
+
+        .acc-option:hover, .acc-option:focus {
+            background: #eee;
+        }
+
+        /* Dynamic Accessibility Classes */
+        html.large-text { font-size: 1.1em; }
+        html.extra-large-text { font-size: 1.25em; }
+
+        body.high-contrast {
+            filter: contrast(200%);
+            /* הוספתי פילטר בסיסי לניגודיות */
+        }
 
         /* Existing styles */
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
@@ -213,6 +193,7 @@
         .features { padding: 5rem 0; background: white; }
         .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: var(--dark); position: relative; }
         .section-title::after { content: ''; position: absolute; bottom: -10px; right: 50%; transform: translateX(50%); width: 100px; height: 3px; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 2px; }
+        .section-title:after { content: ''; position: absolute; bottom: -10px; right: 50%; transform: translateX(50%); width: 100px; height: 3px; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 2px; }
         .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
         .feature-card { background: var(--light); padding: 2.5rem; border-radius: 15px; text-align: center; transition: all 0.3s ease; border: 1px solid transparent; position: relative; overflow: hidden; }
         .feature-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: linear-gradient(90deg, var(--primary), var(--accent)); transform: scaleX(0); transition: transform 0.3s ease; }
@@ -222,6 +203,7 @@
         .feature-card h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--dark); }
         .feature-card p { color: #666; line-height: 1.6; }
         .quiz-types { padding: 5rem 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .section-title.white { color: white; }
         .types-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem; }
         .type-card { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 2rem; border-radius: 15px; text-align: center; transition: all 0.3s ease; border: 1px solid rgba(255, 255, 255, 0.2); }
         .type-card:hover { transform: translateY(-10px); background: rgba(255, 255, 255, 0.2); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
@@ -272,6 +254,68 @@
         .admin-input { padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem; margin-bottom: 1rem; width: 100%; background: white; color: var(--dark); }
         .lock-icon { font-size: 4rem; margin-bottom: 1rem; color: var(--accent); animation: pulse 2s infinite; }
         @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+        
+        /* New Styles for Legal Documents Section */
+        .legal-document {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .legal-document .container {
+            max-width: 800px;
+            padding: 20px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 3rem;
+        }
+        
+        .legal-document h1 {
+            color: var(--primary);
+            text-align: center;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+        .legal-document h2 {
+            color: var(--secondary);
+            margin-top: 25px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+            font-size: 1.5rem;
+        }
+        .legal-document h3 {
+             color: var(--dark);
+             font-size: 1.2rem;
+             margin-top: 15px;
+        }
+        .legal-document p, .legal-document ul {
+            text-align: right;
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: var(--text);
+        }
+        .legal-document ul {
+            list-style-type: disc;
+            padding-right: 20px;
+        }
+        .legal-document .contact-info {
+            background: #eef;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            border-right: 3px solid var(--accent);
+        }
+        .legal-document .note {
+            font-size: 0.9em;
+            color: #D32F2F;
+            font-weight: bold;
+            text-align: right;
+            margin-top: 30px;
+        }
+
 
         @media (max-width: 768px) {
             .nav-links { display: none; }
@@ -281,8 +325,6 @@
             .section-title { font-size: 2rem; }
             .admin-panel { padding: 1.5rem; }
             .lock-content { padding: 2rem; }
-            .accessibility-toggle-btn { width: 40px; height: 40px; }
-            .accessibility-widget { top: 70px; }
             #lock-screen { font-size: 1.2rem; }
             .pricing-card.popular { transform: none; }
             .pricing-card.popular:hover { transform: translateY(-10px); }
@@ -293,23 +335,32 @@
     <div class="skip-links">
         <a href="#main-content">דלג לתוכן המרכזי</a>
         <a href="#contact">דלג ליצירת קשר</a>
+        <a href="#accessibility-full">דלג להצהרת נגישות</a>
     </div>
 
-    <button class="accessibility-toggle-btn" onclick="toggleAccessibilityWidget()" onkeydown="handleKeydown(event, toggleAccessibilityWidget)" role="button" aria-label="פתח תפריט נגישות">
+    <button id="accessibility-button" aria-label="כפתור נגישות" aria-expanded="false" aria-controls="accessibility-panel">
         <i class="fas fa-universal-access" aria-hidden="true"></i>
     </button>
-
-    <div class="accessibility-widget" id="accessibilityWidget" role="dialog" aria-label="תפריט נגישות">
-        <button class="accessibility-btn" onclick="toggleHighContrast()" onkeydown="handleKeydown(event, toggleHighContrast)">ניגודיות גבוהה</button>
-        <button class="accessibility-btn" onclick="toggleGrayscale()" onkeydown="handleKeydown(event, toggleGrayscale)">גווני אפור</button>
-        <button class="accessibility-btn" onclick="toggleLargeText()" onkeydown="handleKeydown(event, toggleLargeText)">טקסט מוגדל</button>
-        <button class="accessibility-btn" onclick="toggleFocusHighlight()" onkeydown="handleKeydown(event, toggleFocusHighlight)">הדגשת פוקוס</button>
-        <button class="accessibility-btn" onclick="toggleLargeCursor()" onkeydown="handleKeydown(event, toggleLargeCursor)">סמן גדול</button>
-        <button class="accessibility-btn" onclick="resetAccessibility()" onkeydown="handleKeydown(event, resetAccessibility)">אפס הגדרות</button>
+    
+    <div id="accessibility-panel" role="menu" aria-hidden="true">
+        <button id="contrast-toggle" class="acc-option" role="menuitem" onclick="document.body.classList.toggle('high-contrast')">
+            <i class="fas fa-adjust" aria-hidden="true"></i> ניגודיות גבוהה
+        </button>
+        <button id="text-increase" class="acc-option" role="menuitem">
+            <i class="fas fa-plus" aria-hidden="true"></i> הגדל טקסט
+        </button>
+        <button id="text-decrease" class="acc-option" role="menuitem">
+            <i class="fas fa-minus" aria-hidden="true"></i> הקטן טקסט
+        </button>
+        <button id="text-reset" class="acc-option" role="menuitem">
+            <i class="fas fa-undo" aria-hidden="true"></i> איפוס
+        </button>
+        <a href="#accessibility-full" class="acc-option" role="menuitem">
+            <i class="fas fa-file-alt" aria-hidden="true"></i> הצהרת נגישות
+        </a>
     </div>
-
     <div class="cookie-banner" id="cookieBanner" role="alert" aria-label="הודעת הסכמה לקוקיז">
-        <p>אנו משתמשים בקוקיז כדי לשפר את חוויית הגלישה שלך. המשך גלישה מהווה הסכמה לשימוש בקוקיז.</p>
+        <p>אנו משתמשים בקוקיז כדי לשפר את חוויית הגלישה שלך. המשך גלישה מהווה הסכמה לשימוש בקוקיז. לפרטים נוספים, אנא עיין ב<a href="#privacy-full">מדיניות הפרטיות</a>.</p>
         <button class="cookie-btn" onclick="acceptCookies()" onkeydown="handleKeydown(event, acceptCookies)">אשר</button>
         <button class="cookie-btn" onclick="declineCookies()" onkeydown="handleKeydown(event, declineCookies)">דחה</button>
     </div>
@@ -427,7 +478,7 @@
 
         <section id="quiz-types" class="quiz-types">
             <div class="container">
-                <h2 class="section-title">סוגי חידונים</h2>
+                <h2 class="section-title white">סוגי חידונים</h2>
                 <div class="types-grid">
                     <div class="type-card">
                         <div class="type-icon">
@@ -536,172 +587,354 @@
             </div>
         </section>
 
-        <section id="accessibility-statement">
+        <section id="accessibility-full" class="legal-document">
             <div class="container">
-                <h2>הצהרת נגישות</h2>
-                <p>אנו מחויבים להנגשת האתר לפי תקן ישראלי 5568 ו-WCAG 2.1 ברמת AA. האתר תומך בניווט מקלדת, ניגודיות גבוהה, טקסט מוגדל, סמן גדול והדגשת פוקוס. ליצירת קשר עם רכז הנגישות: <a href="mailto:accessibility@clickers.co.il">accessibility@clickers.co.il</a>.</p>
-                <p>תאריך עדכון ההצהרה: 21 באוקטובר 2025.</p>
+                <h1>הצהרת נגישות לאתר קליקרים</h1>
+                
+                <p>אנו ב<strong>קליקרים</strong> שואפים להבטיח כי האתר יהיה נגיש לכלל הציבור, לרבות אנשים עם מוגבלויות. השקענו משאבים רבים על מנת להקל את השימוש באתר ולאפשר חווית גלישה שוויונית לכלל המשתמשים.</p>
+            
+                <h2>עמידה בתקן</h2>
+                <ul>
+                    <li>האתר נבנה בהתאם להוראות הנגישות בתקן הישראלי **ת"י 5568** לנגישות תכנים באינטרנט ברמה **AA**, בהתאם להנחיות **WCAG 2.0** (Web Content Accessibility Guidelines).</li>
+                    <li>הבדיקות לנגישות בוצעו בדפדפנים כרום, פיירפוקס ואדג'.</li>
+                    <li>האתר הותאם לשימוש במכשירים סלולריים.</li>
+                </ul>
+            
+                <h2>אמצעי נגישות</h2>
+                <p>
+                    האתר כולל:
+                    <ul>
+                        <li>**כפתור נגישות בסיסי:** כפתור צף המאפשר התאמות בסיסיות (כגון הגדלת/הקטנת טקסט ושינוי ניגודיות כללי).</li>
+                        <li>התאמה מלאה לעבודה עם מקלדת (ניווט באמצעות מקש Tab).</li>
+                        <li>שימוש במאפייני ARIA לטובת קוראי מסך.</li>
+                        <li>קישור דילוג לתוכן הראשי.</li>
+                        <li>תמיכה בדפדפנים מודרניים.</li>
+                    </ul>
+                </p>
+            
+                <h2>הבהרות ומגבלות נגישות</h2>
+                <p>אנו רואים בנגישות ערך עליון. עם זאת, ייתכן כי עמודים מסוימים או רכיבי צד שלישי שאינם בשליטתנו (כגון מודעות או טפסים חיצוניים) לא יהיו נגישים באופן מלא. אנו פועלים לצמצום פערים אלו.</p>
+                <p class="note">
+                    **הערת עורך דין:** פתרון זה מציע נגישות טכנית בסיסית ואינו כולל תיקונים דינמיים מלאים הניתנים על ידי מערכת AI מסחרית. לכן, **הסיכון לתביעה קיים ועשוי להיות גבוה יותר**. מומלץ לבדוק את האתר באופן יסודי עם קוראי מסך אמיתיים (כגון NVDA) כדי לוודא עמידה מלאה בתקן WCAG 2.0 AA. אנו מתחייבים לקוד טכני נגיש, אך אחריות הציות המלאה חלה על בעל האתר.
+                </p>
+                
+                <h2>פרטי רכז הנגישות (לפניות)</h2>
+                <p>אם נתקלתם בבעיה או שיש לכם הערות בנושא נגישות, נשמח שתפנו אלינו. פרטי רכז הנגישות לעניין זה:</p>
+                <div class="contact-info">
+                    <p><strong>שם רכז הנגישות:</strong> יאיר</p>
+                    <p><strong>טלפון:</strong> 052-209-1733</p>
+                    <p><strong>דוא"ל:</strong> przyyryair@gmail.com</p>
+                </div>
+                
+                <p><strong>הצהרה עודכנה לאחרונה:</strong> 25.10.2025</p>
             </div>
         </section>
 
-        <section id="privacy-policy">
+        <section id="privacy-full" class="legal-document">
             <div class="container">
-                <h2>מדיניות פרטיות</h2>
-                <p>בהתאם לחוק הגנת הפרטיות התשמ"א-1981, אנו מחויבים לשמור על פרטיות המשתמשים. המידע שנאסף (כגון תשובות לחידונים) משמש לשיפור השירות בלבד ולא מועבר לצד שלישי ללא הסכמה מפורשת. למידע נוסף: <a href="mailto:privacy@clickers.co.il">privacy@clickers.co.il</a>.</p>
+                <h1>מדיניות פרטיות של קליקרים</h1>
+                <p>מדיניות פרטיות זו מתארת כיצד **קליקרים** ("החברה", "אנחנו") אוסף, משתמש ושומר על המידע האישי של המשתמשים באתר זה (להלן: "האתר").</p>
+            
+                <h2>1. איסוף מידע</h2>
+                <p>אנו אוספים מידע אישי בשתי דרכים עיקריות:</p>
+                
+                <h3>א. מידע נמסר מרצון (טופס יצירת קשר)</h3>
+                <p>כאשר אתה ממלא ושולח את טופס יצירת הקשר, אנו אוספים את המידע הבא:</p>
+                <ul>
+                    <li>שם מלא</li>
+                    <li>כתובת דואר אלקטרוני</li>
+                    <li>מספר טלפון (אם סופק)</li>
+                    <li>תוכן ההודעה (פרטי הפנייה)</li>
+                </ul>
+            
+                <h3>ב. מידע הנאסף אוטומטית (עוגיות וכלים אנליטיים)</h3>
+                <p>האתר עשוי להשתמש בעוגיות (Cookies) ובכלים אנליטיים, גם אם אינם מופיעים כרגע באופן מפורש בקוד. כלים אלו עשויים לאסוף מידע לא אישי כגון:</p>
+                <ul>
+                    <li>כתובת IP.</li>
+                    <li>סוג הדפדפן ומערכת ההפעלה.</li>
+                    <li>זמן השהייה באתר ודפים שנצפו.</li>
+                    <li>שימוש ב-Google Fonts ו-Font Awesome (ספקי צד ג' שעשויים לאסוף נתוני שימוש בסיסיים).</li>
+                </ul>
+                <p class="note">**חשוב:** איננו משתמשים כרגע במערכות אנליטיקה כמו Google Analytics או Facebook Pixel, אך במידה ויוטמעו בעתיד, מדיניות זו תעודכן ונספק אפשרות להתנגדות (Opt-out).</p>
+            
+                <h2>2. מטרות השימוש במידע</h2>
+                <p>המידע האישי שנאסף משמש למטרות הבאות:</p>
+                <ul>
+                    <li>ליצירת קשר חוזר איתך בתגובה לפנייתך.</li>
+                    <li>לצורך מתן הצעות מחיר, שירותי פיתוח ותמיכה.</li>
+                    <li>לשיפור השירותים והאתר (ניתוח דפוסי שימוש כלליים).</li>
+                    <li>לשליחת עדכונים, מבצעים או חומר שיווקי, **רק** אם נתת הסכמה מפורשת לכך.</li>
+                </ul>
+            
+                <h2>3. מסירת מידע לצדדים שלישיים</h2>
+                <p>אנו מתחייבים לא למכור, לסחור או להשכיר את המידע האישי שלך לצדדים שלישיים, אלא במקרים הבאים:</p>
+                <ul>
+                    <li>**ספקי שירותים:** אנו משתמשים בשירותי צד שלישי לקבלת הודעות (<a href="https://formspree.io" target="_blank" rel="noopener noreferrer">Formspree</a>). ספקים אלו מחויבים לשמור על סודיות המידע.</li>
+                    <li>**אחסון:** המידע עשוי להישמר בשרתי הספק וספקי האחסון שלו (כגון חברת האחסון של האתר).</li>
+                    <li>**חובה חוקית:** אם נדרש על פי חוק, צו בית משפט או רשות מוסמכת.</li>
+                </ul>
+            
+                <h2>4. שמירת המידע</h2>
+                <p>המידע האישי שלך נשמר במערכות שלנו ובשרתי ספקי השירות שלנו (**שרתי הספק, חברת Formspree (לצורך טפסי יצירת קשר), וספקי שירות אחרים**) למשך תקופה סבירה הנדרשת לצורך מתן השירותים או כנדרש בחוק, ולאחר מכן נמחק או הופך לאנונימי.</p>
+            
+                <h2>5. זכויות המשתמש (GDPR & חוק הגנת הפרטיות)</h2>
+                <p>בכפוף לחוק, עומדות לך הזכויות הבאות:</p>
+                <ul>
+                    <li>**זכות עיון ותיקון:** הזכות לבקש גישה למידע האישי שאנו מחזיקים אודותיך ולבקש תיקון של מידע שגוי.</li>
+                    <li>**זכות מחיקה:** הזכות לבקש מחיקה של המידע האישי שלך (הידועה כ"הזכות להישכח").</li>
+                    <li>**זכות התנגדות:** הזכות להתנגד לעיבוד המידע שלך למטרות שיווק ישיר.</li>
+                </ul>
+                <p>כדי לממש זכויות אלה, יש ליצור קשר עם האחראי על הפרטיות בפרטים המופיעים בסעיף 6.</p>
+            
+                <h2>6. יצירת קשר עם האחראי על הפרטיות</h2>
+                <p>לכל שאלה, בקשה או תלונה בנוגע למדיניות פרטיות זו, ניתן ליצור קשר עם האחראי על הפרטיות בפרטים הבאים:</p>
+                <div class="contact-info">
+                    <p><strong>אחראי על הפרטיות:</strong> יאיר</p>
+                    <p><strong>דוא"ל:</strong> przyyryair@gmail.com</p>
+                    <p><strong>טלפון:</strong> 052-209-1733</p>
+                </div>
+            
+                <p style="text-align: center; margin-top: 40px;">
+                    מדיניות זו עודכנה לאחרונה ב: 25.10.2025
+                </p>
             </div>
         </section>
 
-        <section id="terms-of-use">
+        <section id="terms-full" class="legal-document">
             <div class="container">
-                <h2>תנאי שימוש</h2>
-                <p>השימוש באתר כפוף לתנאים הבאים: אין להשתמש בשירות לצרכים לא חוקיים. כל הזכויות על התוכן שמורות לקליקרים. האתר מספק שירותי חידונים ללא התחייבות לתוצאות מסוימות.</p>
+                <h1>תנאי שימוש ושירות של קליקרים</h1>
+                <p>תנאי שימוש אלו מסדירים את השימוש באתר **קליקרים** ואת תנאי ההתקשרות בין המשתמש/לקוח ("הלקוח") לבין **קליקרים** ("הספק"). השימוש באתר ו/או הזמנת שירותי פיתוח מהווים הסכמה לתנאים אלו.</p>
+            
+                <h2>1. הגדרת השירות</h2>
+                <p>השירותים המוצעים הם פיתוח אתרי אינטרנט, דפי נחיתה ו/או אפליקציות כמפורט במחירון האתר או בהצעת המחיר האישית. השירותים **אינם כוללים**:</p>
+                <ul>
+                    <li>עלויות אחסון (Hosting).</li>
+                    <li>עלויות רכישת דומיין (Domain).</li>
+                    <li>עלויות רכישת תמונות, פונטים או רכיבים מסחריים אחרים.</li>
+                    <li>עלויות מנוי שנתי/חודשי לרכיב נגישות חיצוני (כמפורט בהצהרת הנגישות).</li>
+                    <li>תחזוקה שוטפת, אלא אם סוכם אחרת בכתב.</li>
+                </ul>
+            
+                <h2>2. תשלום ובעלות (קניין רוחני)</h2>
+                <ul>
+                    <li>המחירים המפורסמים באתר הינם להמחשה בלבד, והמחיר הסופי ייקבע בהצעת מחיר סגורה.</li>
+                    <li>**קניין רוחני:** הקוד, העיצוב והקניין הרוחני של הפרויקט יישארו בבעלות הספק עד לקבלת התשלום המלא בגין השירות.</li>
+                    <li>**העברת בעלות:** לאחר קבלת התשלום המלא, הבעלות על הקניין הרוחני של המוצר המוגמר תעבור ללקוח, והוא יוכל לעשות בו שימוש בלתי מוגבל.</li>
+                </ul>
+            
+                <h2>3. אחריות ומוגבלות אחריות</h2>
+                <ul>
+                    <li>**תמיכה לאחר מסירה:** הספק מספק תקופת תמיכה טכנית מוגבלת כפי שמפורט במחירון (7, 14 או 30 יום), לתיקון באגים הנובעים מהפיתוח המקורי.</li>
+                    <li>**הגבלת אחריות:** הספק **אינו אחראי** ל:
+                        <ul>
+                            <li>תקלות הנובעות משינויים שבוצעו על ידי הלקוח או גורם חיצוני בקוד לאחר המסירה.</li>
+                            <li>תקלות הנובעות משירותי צד ג' (אחסון, דומיין, מערכת הפצת דואר).</li>
+                            <li>נזקים ישירים או עקיפים שנגרמו כתוצאה משימוש או חוסר יכולת שימוש במוצר.</li>
+                        </ul>
+                    </li>
+                </ul>
+            
+                <h2>4. סיום התקשרות</h2>
+                <p>במקרה של בקשת הלקוח להפסיק פרויקט במהלך הפיתוח, יחויב הלקוח בתשלום יחסי עבור שעות העבודה שבוצעו בפועל, בתוספת דמי ביטול.</p>
+            
+                <h2>5. יצירת קשר</h2>
+                <p>לכל שאלה בנוגע לתנאי שימוש אלו, ניתן ליצור קשר עם הספק בכתובת המייל: przyyryair@gmail.com.</p>
+                
+                <p style="text-align: center; margin-top: 40px;">
+                    תנאי השימוש עודכנו לאחרונה: 25.10.2025
+                </p>
             </div>
         </section>
+
     </main>
 
-    <footer id="contact" role="contentinfo">
+    <div id="admin-overlay" style="display: none;" role="dialog" aria-modal="true" aria-label="פאנל ניהול">
+        <div class="admin-panel">
+            <h2>פאנל ניהול</h2>
+            <div class="admin-controls">
+                <input type="password" id="admin-password" class="admin-input" placeholder="הכנס סיסמה" onkeydown="handleKeydown(event, checkPassword)">
+                <button class="admin-button" onclick="checkPassword()">היכנס</button>
+            </div>
+            <button class="admin-button secondary" onclick="hideAdminPanel()">סגור</button>
+        </div>
+    </div>
+    
+    <div id="lock-screen" style="display: none;">
+        <div class="lock-content">
+            <i class="fas fa-lock lock-icon" aria-hidden="true"></i>
+            <p>האתר ננעל מסיבות תחזוקה. נחזור בקרוב.</p>
+        </div>
+    </div>
+
+    <footer role="contentinfo">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>קליקרים</h3>
-                    <p>פלטפורמה מובילה ליצירת חידונים אינטראקטיביים שמניעים תוצאות לעסקים.</p>
+                    <h3>ניווט מהיר</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">בית</a></li>
+                        <li><a href="#features">יתרונות</a></li>
+                        <li><a href="#pricing">מחירים</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>מידע משפטי</h3>
+                    <ul class="footer-links">
+                        <li><a href="#accessibility-full">הצהרת נגישות</a></li>
+                        <li><a href="#privacy-full">מדיניות פרטיות</a></li>
+                        <li><a href="#terms-full">תנאי שימוש ושירות</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column" id="contact">
+                    <h3>צור קשר</h3>
+                    <ul class="footer-links">
+                        <li><a href="mailto:contact@clickers.co.il"><i class="fas fa-envelope"></i> Contact@Clickers.co.il</a></li>
+                        <li><a href="tel:050-1234567"><i class="fas fa-phone"></i> 050-1234567</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>רשתות חברתיות</h3>
                     <div class="social-links">
-                        <a href="#" aria-label="פייסבוק"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
-                        <a href="#" aria-label="לינקדאין"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
-                        <a href="#" aria-label="טוויטר"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="פייסבוק"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="לינקדאין"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="אינסטגרם"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 קליקרים. כל הזכויות שמורות.</p>
+                &copy; 2025 קליקרים. כל הזכויות שמורות.
             </div>
         </div>
     </footer>
 
-    <div id="admin-overlay">
-        <div class="admin-panel">
-            <h2>פאנל ניהול</h2>
-            <div class="admin-controls">
-                <button class="admin-button" onclick="lockSite()">נעל אתר</button>
-                <button class="admin-button secondary" onclick="closeAdminPanel()">סגור</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="lock-screen">
-        <div class="lock-content">
-            <i class="fas fa-lock lock-icon" aria-hidden="true"></i>
-            <p>האתר נעול כרגע למטרות תחזוקה</p>
-        </div>
-    </div>
-
     <script>
-        // Accessibility Functions
-        function toggleAccessibilityWidget() {
-            document.getElementById('accessibilityWidget').classList.toggle('active');
+        const COOKIE_BANNER = document.getElementById('cookieBanner');
+        const ADMIN_OVERLAY = document.getElementById('admin-overlay');
+        const QUIZ_OPTIONS = document.querySelectorAll('.quiz-option');
+        const QUIZ_RESULT = document.getElementById('quiz-result');
+        
+        const htmlEl = document.documentElement;
+        const body = document.body;
+        const accBtn = document.getElementById('accessibility-button');
+        const accPanel = document.getElementById('accessibility-panel');
+        const contrastToggle = document.getElementById('contrast-toggle');
+        const textIncrease = document.getElementById('text-increase');
+        const textDecrease = document.getElementById('text-decrease');
+        const textReset = document.getElementById('text-reset');
+
+        // Cookie Banner Logic
+        if (!localStorage.getItem('cookies-accepted')) {
+            COOKIE_BANNER.classList.add('active');
         }
 
-        function toggleHighContrast() {
-            document.body.classList.toggle('high-contrast');
-            localStorage.setItem('highContrast', document.body.classList.contains('high-contrast'));
+        function acceptCookies() {
+            localStorage.setItem('cookies-accepted', 'true');
+            COOKIE_BANNER.classList.remove('active');
+        }
+        function declineCookies() {
+            localStorage.setItem('cookies-accepted', 'false');
+            COOKIE_BANNER.classList.remove('active');
         }
 
-        function toggleGrayscale() {
-            document.body.classList.toggle('grayscale');
-            localStorage.setItem('grayscale', document.body.classList.contains('grayscale'));
+        // Quiz Demo Logic
+        let selectedQuizOption = null;
+
+        function selectOption(element) {
+            QUIZ_OPTIONS.forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+            selectedQuizOption = element;
         }
 
-        function toggleLargeText() {
-            document.body.classList.toggle('large-text');
-            localStorage.setItem('largeText', document.body.classList.contains('large-text'));
+        function showQuizResult() {
+            if (selectedQuizOption) {
+                QUIZ_RESULT.style.display = 'block';
+                // In a real app, this would check correctness and display a specific result
+                setTimeout(() => QUIZ_RESULT.style.display = 'none', 5000);
+            } else {
+                alert('אנא בחר תשובה לפני הבדיקה.');
+            }
         }
 
-        function toggleFocusHighlight() {
-            document.body.classList.toggle('focus-highlight');
-            localStorage.setItem('focusHighlight', document.body.classList.contains('focus-highlight'));
+        // Admin Panel Logic
+        function showAdminPanel() {
+            ADMIN_OVERLAY.style.display = 'flex';
+            document.getElementById('admin-password').focus();
         }
 
-        function toggleLargeCursor() {
-            document.body.classList.toggle('large-cursor');
-            localStorage.setItem('largeCursor', document.body.classList.contains('large-cursor'));
+        function hideAdminPanel() {
+            ADMIN_OVERLAY.style.display = 'none';
         }
 
-        function resetAccessibility() {
-            document.body.classList.remove('high-contrast', 'grayscale', 'large-text', 'focus-highlight', 'large-cursor');
-            localStorage.removeItem('highContrast');
-            localStorage.removeItem('grayscale');
-            localStorage.removeItem('largeText');
-            localStorage.removeItem('focusHighlight');
-            localStorage.removeItem('largeCursor');
+        function checkPassword() {
+            const password = document.getElementById('admin-password').value;
+            // The following is a placeholder for demonstration purposes.
+            // In a real production environment, NEVER hardcode credentials in client-side JS.
+            if (password === '1234') { 
+                alert('כניסה למערכת הניהול בהצלחה!');
+                hideAdminPanel();
+                // Redirect or show admin features
+            } else {
+                alert('סיסמה שגויה. נסה שוב.');
+            }
         }
+        
+        // Accessibility Logic (FREE VERSION)
 
-        // Load Accessibility Preferences
-        window.addEventListener('load', () => {
-            if (localStorage.getItem('highContrast') === 'true') toggleHighContrast();
-            if (localStorage.getItem('grayscale') === 'true') toggleGrayscale();
-            if (localStorage.getItem('largeText') === 'true') toggleLargeText();
-            if (localStorage.getItem('focusHighlight') === 'true') toggleFocusHighlight();
-            if (localStorage.getItem('largeCursor') === 'true') toggleLargeCursor();
-            if (!localStorage.getItem('cookiesAccepted')) {
-                document.getElementById('cookieBanner').classList.add('active');
+        // פתיחה/סגירה של פאנל הנגישות
+        accBtn.addEventListener('click', () => {
+            const isVisible = accPanel.classList.toggle('visible');
+            accPanel.setAttribute('aria-hidden', (!isVisible).toString());
+            accBtn.setAttribute('aria-expanded', isVisible.toString());
+        });
+
+        // סגור פאנל ב-ESC
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && accPanel.classList.contains('visible')) {
+                accPanel.classList.remove('visible');
+                accPanel.setAttribute('aria-hidden', 'true');
+                accBtn.setAttribute('aria-expanded', 'false');
+                accBtn.focus();
             }
         });
 
-        // Keyboard Accessibility
+        // ניגודיות גבוהה (הפונקציה מוגדרת inline ב-HTML לצורך פשטות ה-Tab)
+        // contrastToggle.addEventListener('click', () => { body.classList.toggle('high-contrast'); });
+
+        // הגדל טקסט - משתמש ב-htmlEl
+        textIncrease.addEventListener('click', () => {
+            if (htmlEl.classList.contains('extra-large-text')) {
+                // כבר מקסימלי
+            } else if (htmlEl.classList.contains('large-text')) {
+                htmlEl.classList.remove('large-text');
+                htmlEl.classList.add('extra-large-text');
+            } else {
+                htmlEl.classList.add('large-text');
+            }
+        });
+
+        // הקטן טקסט - משתמש ב-htmlEl
+        textDecrease.addEventListener('click', () => {
+            if (htmlEl.classList.contains('extra-large-text')) {
+                htmlEl.classList.remove('extra-large-text');
+                htmlEl.classList.add('large-text');
+            } else if (htmlEl.classList.contains('large-text')) {
+                htmlEl.classList.remove('large-text');
+            }
+            // אם אין קלאסים, לא עושה כלום
+        });
+
+        // איפוס הגדרות - מתייחס לשני האלמנטים
+        textReset.addEventListener('click', () => {
+            body.classList.remove('high-contrast');
+            htmlEl.classList.remove('large-text', 'extra-large-text');
+        });
+        
+        // General Keyboard Handler (for accessibility)
         function handleKeydown(event, callback) {
             if (event.key === 'Enter' || event.key === ' ') {
                 event.preventDefault();
                 callback();
             }
-        }
-
-        document.addEventListener('keydown', (event) => {
-            if (event.altKey && event.key === 'a') {
-                event.preventDefault();
-                toggleAccessibilityWidget();
-            }
-            if (event.key === 'Escape') {
-                document.getElementById('accessibilityWidget').classList.remove('active');
-                document.getElementById('admin-overlay').style.display = 'none';
-            }
-        });
-
-        // Cookie Banner
-        function acceptCookies() {
-            localStorage.setItem('cookiesAccepted', 'true');
-            document.getElementById('cookieBanner').classList.remove('active');
-        }
-
-        function declineCookies() {
-            localStorage.setItem('cookiesAccepted', 'false');
-            document.getElementById('cookieBanner').classList.remove('active');
-        }
-
-        // Quiz Functionality
-        function selectOption(element) {
-            document.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected'));
-            element.classList.add('selected');
-            element.setAttribute('aria-checked', 'true');
-            document.querySelectorAll('.quiz-option').forEach(opt => {
-                if (opt !== element) opt.setAttribute('aria-checked', 'false');
-            });
-        }
-
-        function showQuizResult() {
-            document.getElementById('quiz-result').style.display = 'block';
-        }
-
-        // Admin Panel
-        function showAdminPanel() {
-            document.getElementById('admin-overlay').style.display = 'flex';
-        }
-
-        function closeAdminPanel() {
-            document.getElementById('admin-overlay').style.display = 'none';
-        }
-
-        function lockSite() {
-            document.getElementById('lock-screen').style.display = 'flex';
         }
     </script>
 </body>
